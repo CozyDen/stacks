@@ -1,0 +1,27 @@
+name: dockge
+services:
+  dockge:
+    image: louislam/dockge:1
+    container_name: dockge
+    restart: unless-stopped
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.dockge.rule=Host(`docker.den`)"
+    # - "traefik.http.routers.dockge.rule=PathPrefix(`/`)"  # Change localhost to your domain if needed
+    - "traefik.http.routers.dockge.entrypoints=web" # Use the "web" entrypoint
+    - "traefik.http.services.dockge.loadbalancer.server.port=5001" # Target the correct internal port
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./data:/app/data
+
+    # If you want to use private registries, you need to share the auth file with Dockge:
+    # - /root/.docker/:/root/.docker
+    - /opt/stacks:/opt/stacks
+    environment:
+    # Tell Dockge where is your stacks directory
+    - DOCKGE_STACKS_DIR=/opt/stacks
+    networks:
+    - traefik
+networks:
+  traefik:
+    external: true
