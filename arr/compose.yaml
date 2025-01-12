@@ -63,6 +63,24 @@ services:
     networks:
     - traefik
 
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr
+    restart: unless-stopped
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - TZ=America/New_York
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.overseerr.rule=Host(`overseerr.docker.den`)
+    - traefik.http.routers.overseerr.entrypoints=web # Use the "web" entrypoint
+    - traefik.http.services.overseerr.loadbalancer.server.port=5055 # Target the correct internal port
+    volumes:
+    - ./overseerr:/config
+    expose:
+    - 5055
+
   sabnzbd:
     image: ghcr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
