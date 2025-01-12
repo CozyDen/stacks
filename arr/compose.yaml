@@ -15,8 +15,8 @@ services:
     - traefik.http.routers.sonarr.entrypoints=web # Use the "web" entrypoint
     - traefik.http.services.sonarr.loadbalancer.server.port=8989 # Target the correct internal port
     volumes:
-    - ./sonarr/data:/config
-    # - /mounted:/video # Edit here to change the mount point
+    - ./sonarr:/config
+    - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8989
     networks:
@@ -36,8 +36,8 @@ services:
     - traefik.http.routers.radarr.entrypoints=web # Use the "web" entrypoint
     - traefik.http.services.radarr.loadbalancer.server.port=7878 # Target the correct internal port
     volumes:
-    - ./radarr/data:/config
-    # - /mounted:/video # Edit here to change the mount point
+    - ./radarr:/config
+    - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 7878
     networks:
@@ -57,7 +57,7 @@ services:
     - traefik.http.routers.prowlarr.entrypoints=web # Use the "web" entrypoint
     - traefik.http.services.prowlarr.loadbalancer.server.port=9696 # Target the correct internal port
     volumes:
-    - ./prowlarr/data:/config
+    - ./prowlarr:/config
     expose:
     - 9696
     networks:
@@ -77,9 +77,8 @@ services:
     - traefik.http.routers.sabnzbd.entrypoints=web # Use the "web" entrypoint
     - traefik.http.services.sabnzbd.loadbalancer.server.port=8080 # Target the correct internal port
     volumes:
-    - ./sabnzbd/data:/config
-    # - /path/to/downloads:/downloads #optional
-    # - /path/to/incomplete/downloads:/incomplete-downloads #optional
+    - ./sabnzbd:/config
+    - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8080
     networks:
