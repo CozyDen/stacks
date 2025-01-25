@@ -80,6 +80,8 @@ services:
     - /opt/stacks/servarr/overseerr:/config
     expose:
     - 5055
+    networks:
+    - traefik
 
   sabnzbd:
     image: ghcr.io/linuxserver/sabnzbd:latest
