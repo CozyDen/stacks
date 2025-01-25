@@ -63,9 +63,9 @@ services:
     networks:
     - traefik
 
-  overseerr:
-    image: lscr.io/linuxserver/overseerr:latest
-    container_name: overseerr
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
     restart: unless-stopped
     environment:
     - PUID=1000
@@ -73,11 +73,11 @@ services:
     - TZ=America/New_York
     labels:
     - traefik.enable=true
-    - traefik.http.routers.overseerr.rule=Host(`overseerr.docker.den`)
-    - traefik.http.routers.overseerr.entrypoints=web # Use the "web" entrypoint
-    - traefik.http.services.overseerr.loadbalancer.server.port=5055 # Target the correct internal port
+    - traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.docker.den`)
+    - traefik.http.routers.jellyseerr.entrypoints=web # Use the "web" entrypoint
+    - traefik.http.services.jellyseerr.loadbalancer.server.port=5055 # Target the correct internal port
     volumes:
-    - /opt/stacks/servarr/overseerr:/config
+    - /opt/stacks/servarr/jellyseerr:/config
     expose:
     - 5055
     networks:
