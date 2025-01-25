@@ -14,7 +14,7 @@ services:
     - ./data:/app/data
     # If you want to use private registries, you need to share the auth file with Dockge:
     # - /root/.docker/:/root/.docker
-    - /opt/dockge/stacks:/opt/stacks
+    - /opt/stacks/dockge/stacks:/opt/stacks
     environment:
     # Tell Dockge where is your stacks directory
     - DOCKGE_STACKS_DIR=/opt/stacks
