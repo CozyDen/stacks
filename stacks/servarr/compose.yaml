@@ -77,7 +77,7 @@ services:
     - traefik.http.routers.jellyseerr.entrypoints=web # Use the "web" entrypoint
     - traefik.http.services.jellyseerr.loadbalancer.server.port=5055 # Target the correct internal port
     volumes:
-    - /opt/stacks/servarr/jellyseerr:/config
+    - /opt/stacks/servarr/jellyseerr:/app/config
     expose:
     - 5055
     networks:
