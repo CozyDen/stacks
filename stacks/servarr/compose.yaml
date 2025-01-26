@@ -87,7 +87,6 @@ services:
     image: ghcr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     restart: unless-stopped
-    mem_limit: 4gb
     environment:
     - PUID=1000
     - PGID=1000
