@@ -10,7 +10,7 @@ services:
       caddy.reverse_proxy: "{{upstreams 9000}}"
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ./data:/data
+    - /data/portainer:/data
     networks:
     - caddy
 networks:
