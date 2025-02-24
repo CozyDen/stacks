@@ -10,17 +10,16 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-    - traefik.enable=true
-    - traefik.http.routers.sonarr.rule=Host(`sonarr.docker.den`)
-    - traefik.http.routers.sonarr.entrypoints=web # Use the "web" entrypoint
-    - traefik.http.services.sonarr.loadbalancer.server.port=8989 # Target the correct internal port
+      caddy: sonarr.docker.den
+      caddy.tls: internal
+      caddy.reverse_proxy: "{{upstreams 8989}}"
     volumes:
     - /opt/stacks/servarr/sonarr:/config
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8989
     networks:
-    - traefik
+    - caddy
 
   radarr:
     image: ghcr.io/linuxserver/radarr:latest
@@ -31,17 +30,16 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-    - traefik.enable=true
-    - traefik.http.routers.radarr.rule=Host(`radarr.docker.den`)
-    - traefik.http.routers.radarr.entrypoints=web # Use the "web" entrypoint
-    - traefik.http.services.radarr.loadbalancer.server.port=7878 # Target the correct internal port
+      caddy: radarr.docker.den
+      caddy.tls: internal
+      caddy.reverse_proxy: "{{upstreams 7878}}"
     volumes:
     - /opt/stacks/servarr/radarr:/config
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 7878
     networks:
-    - traefik
+    - caddy
 
   prowlarr:
     image: ghcr.io/linuxserver/prowlarr:develop
@@ -52,16 +50,15 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-    - traefik.enable=true
-    - traefik.http.routers.prowlarr.rule=Host(`prowlarr.docker.den`)
-    - traefik.http.routers.prowlarr.entrypoints=web # Use the "web" entrypoint
-    - traefik.http.services.prowlarr.loadbalancer.server.port=9696 # Target the correct internal port
+      caddy: prowlarr.docker.den
+      caddy.tls: internal
+      caddy.reverse_proxy: "{{upstreams 9696}}"
     volumes:
     - /opt/stacks/servarr/prowlarr:/config
     expose:
     - 9696
     networks:
-    - traefik
+    - caddy
 
   jellyseerr:
     image: fallenbagel/jellyseerr:latest
@@ -72,16 +69,15 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-    - traefik.enable=true
-    - traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.docker.den`)
-    - traefik.http.routers.jellyseerr.entrypoints=web # Use the "web" entrypoint
-    - traefik.http.services.jellyseerr.loadbalancer.server.port=5055 # Target the correct internal port
+      caddy: jellyseerr.docker.den
+      caddy.tls: internal
+      caddy.reverse_proxy: "{{upstreams 5055}}"
     volumes:
     - /opt/stacks/servarr/jellyseerr:/app/config
     expose:
     - 5055
     networks:
-    - traefik
+    - caddy
 
   sabnzbd:
     image: ghcr.io/linuxserver/sabnzbd:latest
@@ -92,18 +88,17 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-    - traefik.enable=true
-    - traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.docker.den`)
-    - traefik.http.routers.sabnzbd.entrypoints=web # Use the "web" entrypoint
-    - traefik.http.services.sabnzbd.loadbalancer.server.port=8080 # Target the correct internal port
+      caddy: sabnzbd.docker.den
+      caddy.tls: internal
+      caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
     - /opt/stacks/servarr/sabnzbd:/config
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8080
     networks:
-    - traefik
+    - caddy
 
 networks:
-  traefik:
+  caddy:
     external: true
