@@ -14,7 +14,7 @@ services:
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 8989}}"
     volumes:
-    - /opt/stacks/servarr/sonarr:/config
+    - /data/stacks/servarr/sonarr:/config
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8989
@@ -34,7 +34,7 @@ services:
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 7878}}"
     volumes:
-    - /opt/stacks/servarr/radarr:/config
+    - /data/stacks/servarr/radarr:/config
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 7878
@@ -54,7 +54,7 @@ services:
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 9696}}"
     volumes:
-    - /opt/stacks/servarr/prowlarr:/config
+    - /data/stacks/servarr/prowlarr:/config
     expose:
     - 9696
     networks:
@@ -73,7 +73,7 @@ services:
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 5055}}"
     volumes:
-    - /opt/stacks/servarr/jellyseerr:/app/config
+    - /data/stacks/servarr/jellyseerr:/app/config
     expose:
     - 5055
     networks:
@@ -92,7 +92,7 @@ services:
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
-    - /opt/stacks/servarr/sabnzbd:/config
+    - /data/stacks/servarr/sabnzbd:/config
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8080
