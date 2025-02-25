@@ -15,6 +15,7 @@ services:
       caddy.reverse_proxy: "{{upstreams 8989}}"
     volumes:
     - /data/stacks/servarr/sonarr:/config
+    - /data/stacks/servarr/sabnzbd/Downloads/complete:/config/Downloads/complete
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 8989
@@ -35,6 +36,7 @@ services:
       caddy.reverse_proxy: "{{upstreams 7878}}"
     volumes:
     - /data/stacks/servarr/radarr:/config
+    - /data/stacks/servarr/sabnzbd/Downloads/complete:/config/Downloads/complete
     - /mnt/jellyfin:/mnt/jellyfin
     expose:
     - 7878
