@@ -1,0 +1,43 @@
+services:
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io:latest
+    container_name: change-detection
+    volumes:
+    - changedetection-data:/datastore
+    environment:
+    - PORT=5000
+    - PUID=1000
+    - PGID=1000
+    - PLAYWRIGHT_DRIVER_URL=ws://browserless-chrome:3000/chrome?launch={"args":{"--window-size=1280,720"},"defaultViewport":{"height":720,"width":1280},"headless":false,"stealth":true}&blockAds=true
+    labels:
+      caddy: changedetection.docker.den
+      caddy.tls: internal
+      caddy.reverse_proxy: "{{upstreams 5000}}"
+    expose:
+    - 5000
+    restart: unless-stopped
+    depends_on:
+    - browserless-chrome
+    networks:
+    - caddy
+    - internal
+
+  browserless-chrome:
+    image: ghcr.io/browserless/chrome:latest
+    restart: unless-stopped
+    environment:
+    - TIMEOUT=600000 # Now 10 minutes
+    - CONCURRENT=15
+    expose:
+    - 3000
+    networks:
+    - internal
+
+networks:
+  caddy:
+    external: true
+  internal:
+    driver: bridge
+
+volumes:
+  changedetection-data:
