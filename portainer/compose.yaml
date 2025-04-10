@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     labels:
       caddy: docker.cozy-lab.dev
-      caddy.tls: internal
+      caddy.auto_https: off
       caddy.reverse_proxy: "{{upstreams 9000}}"
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
