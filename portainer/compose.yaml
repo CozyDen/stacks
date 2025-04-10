@@ -5,7 +5,7 @@ services:
     container_name: portainer
     restart: unless-stopped
     labels:
-      caddy: portainer.docker.den
+      caddy: docker.cozy-lab.dev
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 9000}}"
     volumes:

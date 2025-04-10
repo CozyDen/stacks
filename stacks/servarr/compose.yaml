@@ -10,7 +10,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: sonarr.docker.den
+      caddy: sonarr.cozy-lab.dev
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 8989}}"
     volumes:
@@ -31,7 +31,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: radarr.docker.den
+      caddy: radarr.cozy-lab.dev
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 7878}}"
     volumes:
@@ -52,7 +52,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: prowlarr.docker.den
+      caddy: prowlarr.cozy-lab.dev
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 9696}}"
     volumes:
@@ -71,7 +71,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: jellyseerr.docker.den
+      caddy: jellyseerr.cozy-lab.dev
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 5055}}"
     volumes:
@@ -90,7 +90,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: sabnzbd.docker.den
+      caddy: sabnzbd.cozy-lab.dev
       caddy.tls: internal
       caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
