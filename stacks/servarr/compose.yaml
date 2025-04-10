@@ -68,7 +68,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: jellyseerr.cozy-lab.dev
+      caddy: http://jellyseerr.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 5055}}"
     volumes:
     - /data/servarr/jellyseerr:/app/config
