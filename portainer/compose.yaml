@@ -4,17 +4,14 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: unless-stopped
-    ports:
-    - 9000:9000
-    #labels:
-      #caddy: docker.cozy-lab.dev
-      #caddy.auto_https: off
-      #caddy.reverse_proxy: "{{upstreams 9000}}"
+    labels:
+      caddy: docker.cozy-lab.dev
+      caddy.reverse_proxy: "{{upstreams 9000}}"
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - /data/portainer:/data
-    #networks:
-    #- caddy
-#networks:
-#  caddy:
-#    external: true
+    networks:
+    - caddy
+networks:
+  caddy:
+    external: true
