@@ -10,7 +10,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: sonarr.cozy-lab.dev
+      caddy: http://sonarr.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 8989}}"
     volumes:
     - /dvr/servarr:/data
@@ -30,7 +30,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: radarr.cozy-lab.dev
+      caddy: http://radarr.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 7878}}"
     volumes:
     - /dvr/servarr:/data
@@ -50,7 +50,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: prowlarr.cozy-lab.dev
+      caddy: http://prowlarr.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 9696}}"
     volumes:
     - /data/servarr/prowlarr:/config
@@ -86,7 +86,7 @@ services:
     - PGID=1000
     - TZ=America/New_York
     labels:
-      caddy: sabnzbd.cozy-lab.dev
+      caddy: http://sabnzbd.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
     - /dvr/servarr:/data

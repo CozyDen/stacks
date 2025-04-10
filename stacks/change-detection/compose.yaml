@@ -10,7 +10,7 @@ services:
     - PGID=1000
     - PLAYWRIGHT_DRIVER_URL=ws://browserless-chrome:3000/chrome?launch={"headless":false,"stealth":true}&blockAds=true
     labels:
-      caddy: changedetection.cozy-lab.dev
+      caddy: http://changedetection.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 5000}}"
     expose:
     - 5000
