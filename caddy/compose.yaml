@@ -6,6 +6,8 @@ services:
     restart: unless-stopped
     environment:
       CADDY_INGRESS_NETWORKS: caddy
+    labels:
+      caddy.respond: / "unknown docker subdomain" 404
     ports:
     - 8080:80
     volumes:
