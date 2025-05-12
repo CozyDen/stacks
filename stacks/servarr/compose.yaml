@@ -97,6 +97,35 @@ services:
     networks:
     - caddy
 
+  qbittorrent:
+    image: binhex/arch-qbittorrentvpn:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+
+    cap_add:
+    - NET_ADMIN
+    environment:
+    - VPN_ENABLED=yes
+    - VPN_PROV=custom
+    - VPN_CLIENT=openvpn
+    - LAN_NETWORK=192.168.1.0/24
+    - DEBUG=false
+    - WEBUI_PORT=8080
+    - UMASK=002
+    - PUID=1000
+    - PGID=1000
+    labels:
+      caddy: http://qbittorrent.cozy-lab.dev
+      caddy.reverse_proxy: "{{upstreams 8080}}"
+    volumes:
+    - /dvr/servarr:/data:rw,nosuid,noexec,nodev
+    - /data/servarr/qbittorrent:/config:rw,nosuid,noexec,nodev
+    - /mnt/jellyfin:/mnt/jellyfin:rw,nosuid,noexec,nodev
+    expose:
+    - 8080
+    networks:
+    - caddy
+
 networks:
   caddy:
     external: true
