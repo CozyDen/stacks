@@ -42,7 +42,7 @@ services:
     - caddy
 
   readarr:
-    image: lscr.io/linuxserver/readarr:develop
+    image: lscr.io/linuxserver/readarr:nightly
     container_name: readarr
     restart: unless-stopped
     environment:
