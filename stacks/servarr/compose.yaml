@@ -77,21 +77,6 @@ services:
     networks:
     - caddy
 
-  openbooks:
-    image: evanbuss/openbooks:latest
-    container_name: openbooks
-    command: --port=1986 --name="CozyLab" --persist
-    user: "1000:1000"
-    labels:
-      caddy: http://books.cozy-lab.dev
-      caddy.reverse_proxy: "{{upstreams 1986}}"
-    volumes:
-    - /mnt/jellyfin/books:/books/books
-    expose:
-    - 1986
-    networks:
-    - caddy
-
   sabnzbd:
     image: ghcr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd

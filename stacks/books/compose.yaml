@@ -1,0 +1,37 @@
+services:
+
+  openbooks:
+    image: evanbuss/openbooks:latest
+    container_name: openbooks
+    command: --port=1986 --name="CozyLab" --persist
+    user: "1000:1000"
+    labels:
+      caddy: http://books.cozy-lab.dev
+      caddy.reverse_proxy: "{{upstreams 1986}}"
+    volumes:
+    - /mnt/jellyfin/books:/books/books
+    expose:
+    - 1986
+    networks:
+    - caddy
+
+  calibre:
+    image: lscr.io/linuxserver/calibre:latest
+    container_name: calibre
+    restart: unless-stopped
+    environment:
+    - PUID=1000
+    - PGID=1000
+    - TZ=America/New_York
+    labels:
+      caddy: http://calibre.cozy-lab.dev
+      caddy.reverse_proxy: "{{upstreams 8081}}"
+    volumes:
+    - /data/books/calibre:/config
+    - /mnt/jellyfin/books:/mnt/books
+    expose:
+    - 8081
+
+networks:
+  caddy:
+    external: true
