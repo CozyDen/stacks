@@ -86,7 +86,7 @@ services:
       caddy: http://books.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 1986}}"
     volumes:
-    - /mnt/jellyfin/books:/books
+    - /mnt/jellyfin/books:/books/books
     expose:
     - 1986
     networks:
