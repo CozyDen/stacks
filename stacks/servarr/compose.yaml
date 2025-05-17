@@ -41,25 +41,13 @@ services:
     networks:
     - caddy
 
-  readarr:
-    image: lscr.io/linuxserver/readarr:nightly
-    container_name: readarr
-    restart: unless-stopped
-    environment:
-    - PUID=1000
-    - PGID=1000
-    - TZ=America/New_York
+  openbooks:
+    image: evanbuss/openbooks:latest
+    container_name: OpenBooks
+    command: --name CozyLab --persist
     labels:
-      caddy: http://readarr.cozy-lab.dev
-      caddy.reverse_proxy: "{{upstreams 8787}}"
-    volumes:
-    - /dvr/servarr:/data
-    - /data/servarr/readarr:/config
-    - /mnt/jellyfin:/mnt/jellyfin
-    expose:
-    - 8787
-    networks:
-    - caddy
+      caddy: http://books.cozy-lab.dev
+      caddy.reverse_proxy: "{{upstreams 80}}"
 
   prowlarr:
     image: ghcr.io/linuxserver/prowlarr:develop
