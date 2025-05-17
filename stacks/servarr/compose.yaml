@@ -83,7 +83,7 @@ services:
     command: --port=1986 --name="CozyLab" --persist
     labels:
       caddy: http://books.cozy-lab.dev
-      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy.reverse_proxy: "{{upstreams 1986}}"
     expose:
     - 1986
 
