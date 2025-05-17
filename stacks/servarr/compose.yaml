@@ -41,14 +41,6 @@ services:
     networks:
     - caddy
 
-  openbooks:
-    image: evanbuss/openbooks:latest
-    container_name: OpenBooks
-    command: --name CozyLab --persist
-    labels:
-      caddy: http://books.cozy-lab.dev
-      caddy.reverse_proxy: "{{upstreams 80}}"
-
   prowlarr:
     image: ghcr.io/linuxserver/prowlarr:develop
     container_name: prowlarr
@@ -84,6 +76,16 @@ services:
     - 5055
     networks:
     - caddy
+
+  openbooks:
+    image: evanbuss/openbooks:latest
+    container_name: openbooks
+    command: --port=1986 --name="CozyLab" --persist
+    labels:
+      caddy: http://books.cozy-lab.dev
+      caddy.reverse_proxy: "{{upstreams 80}}"
+    expose:
+    - 1986
 
   sabnzbd:
     image: ghcr.io/linuxserver/sabnzbd:latest
