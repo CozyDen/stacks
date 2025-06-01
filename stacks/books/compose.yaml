@@ -3,6 +3,7 @@ services:
   openbooks:
     image: evanbuss/openbooks:latest
     container_name: openbooks
+    restart: unless-stopped
     command: --port=1986 --name="CozyLab" --persist
     user: "1000:1000"
     labels:
