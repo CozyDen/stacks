@@ -5,12 +5,12 @@ services:
     container_name: openbooks
     restart: unless-stopped
     command: --port=1986 --name="CozyLab" --persist
-    user: "1000:1000"
+    user: 3000:3000
     labels:
       caddy: http://books.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 1986}}"
     volumes:
-    - /mnt/jellyfin/books:/books/books
+    - /mnt/spirit-library/media/books:/books/books
     expose:
     - 1986
     networks:

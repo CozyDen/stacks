@@ -6,8 +6,8 @@ services:
     container_name: sonarr
     restart: unless-stopped
     environment:
-    - PUID=1000
-    - PGID=1000
+    - PUID=3000
+    - PGID=3000
     - TZ=America/New_York
     labels:
       caddy: http://sonarr.cozy-lab.dev
@@ -15,7 +15,7 @@ services:
     volumes:
     - /dvr/servarr:/data
     - /data/servarr/sonarr:/config
-    - /mnt/jellyfin:/mnt/jellyfin
+    - /mnt/spirit-library/media:/mnt/spirit-library/media
     expose:
     - 8989
     networks:
@@ -26,8 +26,8 @@ services:
     container_name: radarr
     restart: unless-stopped
     environment:
-    - PUID=1000
-    - PGID=1000
+    - PUID=3000
+    - PGID=3000
     - TZ=America/New_York
     labels:
       caddy: http://radarr.cozy-lab.dev
@@ -35,7 +35,7 @@ services:
     volumes:
     - /dvr/servarr:/data
     - /data/servarr/radarr:/config
-    - /mnt/jellyfin:/mnt/jellyfin
+    - /mnt/spirit-library/media:/mnt/spirit-library/media
     expose:
     - 7878
     networks:
@@ -46,8 +46,8 @@ services:
     container_name: prowlarr
     restart: unless-stopped
     environment:
-    - PUID=1000
-    - PGID=1000
+    - PUID=3000
+    - PGID=3000
     - TZ=America/New_York
     labels:
       caddy: http://prowlarr.cozy-lab.dev
@@ -64,8 +64,8 @@ services:
     container_name: jellyseerr
     restart: unless-stopped
     environment:
-    - PUID=1000
-    - PGID=1000
+    - PUID=3000
+    - PGID=3000
     - TZ=America/New_York
     labels:
       caddy: http://jellyseerr.cozy-lab.dev
@@ -82,8 +82,8 @@ services:
     container_name: sabnzbd
     restart: unless-stopped
     environment:
-    - PUID=1000
-    - PGID=1000
+    - PUID=3000
+    - PGID=3000
     - TZ=America/New_York
     labels:
       caddy: http://sabnzbd.cozy-lab.dev
@@ -91,7 +91,7 @@ services:
     volumes:
     - /dvr/servarr:/data
     - /data/servarr/sabnzbd:/config
-    - /mnt/jellyfin:/mnt/jellyfin
+    - /mnt/spirit-library/media:/mnt/spirit-library/media
     expose:
     - 8080
     networks:
@@ -111,15 +111,15 @@ services:
     - DEBUG=false
     - WEBUI_PORT=8080
     - UMASK=002
-    - PUID=1000
-    - PGID=1000
+    - PUID=3000
+    - PGID=3000
     labels:
       caddy: http://qbittorrent.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
     - /dvr/servarr:/data:rw,nosuid,noexec,nodev
     - /data/servarr/qbittorrent:/config:rw,nosuid,noexec,nodev
-    - /mnt/jellyfin:/mnt/jellyfin:rw,nosuid,noexec,nodev
+    - /mnt/spirit-library/media:/mnt/spirit-library/media:rw,nosuid,noexec,nodev
     expose:
     - 8080
     networks:
