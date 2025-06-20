@@ -13,9 +13,8 @@ services:
       caddy: http://sonarr.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 8989}}"
     volumes:
-    - /dvr/servarr:/data
     - /data/servarr/sonarr:/config
-    - /mnt/spirit-library/media:/mnt/spirit-library/media
+    - /mnt/spirit-library/media:/mnt/spirit-library/media:rw,nosuid,noexec,nodev
     expose:
     - 8989
     networks:
@@ -33,9 +32,8 @@ services:
       caddy: http://radarr.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 7878}}"
     volumes:
-    - /dvr/servarr:/data
     - /data/servarr/radarr:/config
-    - /mnt/spirit-library/media:/mnt/spirit-library/media
+    - /mnt/spirit-library/media:/mnt/spirit-library/media:rw,nosuid,noexec,nodev
     expose:
     - 7878
     networks:
@@ -89,9 +87,8 @@ services:
       caddy: http://sabnzbd.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
-    - /dvr/servarr:/data
     - /data/servarr/sabnzbd:/config
-    - /mnt/spirit-library/media:/mnt/spirit-library/media
+    - /mnt/spirit-library/media:/mnt/spirit-library/media:rw,nosuid,noexec,nodev
     expose:
     - 8080
     networks:
@@ -117,7 +114,6 @@ services:
       caddy: http://qbittorrent.cozy-lab.dev
       caddy.reverse_proxy: "{{upstreams 8080}}"
     volumes:
-    - /dvr/servarr:/data:rw,nosuid,noexec,nodev
     - /data/servarr/qbittorrent:/config:rw,nosuid,noexec,nodev
     - /mnt/spirit-library/media:/mnt/spirit-library/media:rw,nosuid,noexec,nodev
     expose:
