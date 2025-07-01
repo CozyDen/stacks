@@ -2,6 +2,7 @@ name: servarr
 services:
 
   sonarr:
+    user: 3000:3000
     image: ghcr.io/linuxserver/sonarr:latest
     container_name: sonarr
     restart: unless-stopped
@@ -21,6 +22,7 @@ services:
     - caddy
 
   radarr:
+    user: 3000:3000
     image: ghcr.io/linuxserver/radarr:latest
     container_name: radarr
     restart: unless-stopped
@@ -40,6 +42,7 @@ services:
     - caddy
 
   prowlarr:
+    user: 3000:3000
     image: ghcr.io/linuxserver/prowlarr:develop
     container_name: prowlarr
     restart: unless-stopped
@@ -58,6 +61,7 @@ services:
     - caddy
 
   jellyseerr:
+    user: 3000:3000
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr
     restart: unless-stopped
@@ -76,10 +80,10 @@ services:
     - caddy
 
   sabnzbd:
+    user: 3000:3000
     image: ghcr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
     restart: unless-stopped
-    user: 3000:3000
     environment:
     - PUID=3000
     - PGID=3000
