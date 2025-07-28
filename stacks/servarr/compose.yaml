@@ -100,8 +100,6 @@ services:
     image: binhex/arch-qbittorrentvpn:latest
     container_name: qbittorrent
     restart: unless-stopped
-    profiles:
-    - disabled
     cap_add:
     - NET_ADMIN
     environment:
